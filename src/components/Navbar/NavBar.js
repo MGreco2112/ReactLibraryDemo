@@ -36,6 +36,8 @@ const NavBar = (props) => {
         }}>
           <NavButton to="/" label="home"/>
           <NavButton to="/news" label="news"/>
+          <NavButton to="/login" label="login"/>
+          <NavButton to ="/register" label="sign up"/>
         </div>
     </nav> 
   )
