@@ -5,9 +5,12 @@ import Home from "../Home/Home";
 import News from "../News/News";
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
+import Developers from "../developers/Developers";
 
 
 const AppRouter = () => {
+
+    
     return (
         <div style={{width: "100%"}}>
             <Navbar/>
@@ -17,6 +20,7 @@ const AppRouter = () => {
                 <Route path="/news" element={<News/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/developers" element={<Developers/>}/>
             </Routes>
         </div>
     )

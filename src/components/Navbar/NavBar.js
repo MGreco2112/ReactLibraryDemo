@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {Fragment, useContext} from 'react';
 import NavButton from './NavButton';
+import { AuthContext } from '../providers/AuthProvider';
 
 const NavBar = (props) => {
+  const [auth] = useContext(AuthContext);
+
   return (
     <nav style={{
       display:'flex',
@@ -36,8 +39,15 @@ const NavBar = (props) => {
         }}>
           <NavButton to="/" label="home"/>
           <NavButton to="/news" label="news"/>
-          <NavButton to="/login" label="login"/>
-          <NavButton to ="/register" label="sign up"/>
+          {auth.token ? 
+            <NavButton to="/developers" label="developers"/>
+            :
+            <Fragment>
+              <NavButton to="/login" label="login"/>
+              <NavButton to ="/register" label="sign up"/>
+            </Fragment>
+          }
+
         </div>
     </nav> 
   )

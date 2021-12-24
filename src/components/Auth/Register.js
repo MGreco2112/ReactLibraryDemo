@@ -1,9 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import NewUserForm from "./NewUserForm";
 import axios from "axios";
-
+import { AuthContext } from "../providers/AuthProvider";
+import {useNavigate} from 'react-router-dom';
 
 const Register = () => {
+
+    let navigate = useNavigate();
 
     const [query, setQuery] = useState({
         username: "",
@@ -13,6 +16,8 @@ const Register = () => {
         fName: "",
         lName: ""
     });
+
+    const [auth, setAuth] = useContext(AuthContext);
 
     const updateForm = (field, value) => {
         setQuery({
@@ -30,7 +35,7 @@ const Register = () => {
 
         const data = query;
 
-        data.name = query.fname + query.lName;
+        data.name = query.fName + query.lName;
 
         data.cohort = parseInt(query.cohort);
 
@@ -63,8 +68,9 @@ const Register = () => {
                 "Authorization": `Bearer ${token}`
             }});
             console.log(response.data);
+            setAuth({token, name: response.data.name});
+            navigate("/developers");
             alert(response.data.id);
-            alert(response.data.name);
         } catch (e) {
             alert(e.response.data.message)
         }   
