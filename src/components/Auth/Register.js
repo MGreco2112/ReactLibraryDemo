@@ -60,7 +60,7 @@ const Register = () => {
         data.email = data.username;
         try {
             const response = await axios.post("http://localhost:8080/api/developers", data, {headers: {
-                "Authorization": `Bearer: ${token}`
+                "Authorization": `Bearer ${token}`
             }});
             console.log(response.data);
             alert(response.data.id);
