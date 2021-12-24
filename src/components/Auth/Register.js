@@ -64,6 +64,7 @@ const Register = () => {
             }});
             console.log(response.data);
             alert(response.data.id);
+            alert(response.data.name);
         } catch (e) {
             alert(e.response.data.message)
         }   
