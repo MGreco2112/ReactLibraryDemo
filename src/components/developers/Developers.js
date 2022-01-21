@@ -3,11 +3,13 @@ import { AuthContext } from "../providers/AuthProvider";
 import Spinner from "../faCommon/Spinner";
 import axios from "axios";
 import Developer from "./Developer";
+import { useNavigate } from "react-router-dom";
 
 const Developers = (props) => {
     const [auth] = useContext(AuthContext);
     const [developers, setDevelopers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const _getDevelopers = async () => {
@@ -30,7 +32,11 @@ const Developers = (props) => {
     }, [])
 
     const displayDevelopers = () => {
-        return developers.map(dev => <Developer developer={dev} key={dev.id}/>);
+        return developers.map(dev => <Developer developer={dev} key={dev.id} onSelect={onSelect}/>);
+    }
+
+    const onSelect = (devId) => {
+        navigate(`/developers/${devId}`)
     }
 
     return (
