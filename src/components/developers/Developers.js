@@ -20,10 +20,11 @@ const Developers = (props) => {
                 }
             })
             console.log(response.data);
+            console.log(response.data[20].languages[0].name);
             setLoading(false);
             setDevelopers(response.data);
-            } catch (e) {
-                console.log(e.response.message);
+            } catch (err) {
+                console.log(err.response.message);
             }
    
         }

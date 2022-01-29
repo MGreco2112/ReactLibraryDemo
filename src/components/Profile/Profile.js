@@ -5,13 +5,17 @@ import {AuthContext} from "../providers/AuthProvider"
 import image from "../../Assets/background-img.jpg"
 import Button from "../common/Button"
 import lorem from "../../Assets/LoremIpsum";
+import Spinner from "../faCommon/Spinner";
 
-const Profile = (props) => {
+const Profile = () => {
+
     const params = useParams();
     const [developer, setDeveloper] = useState({
-        id: params.devId
+        id: params.devId,
+        languages: []
     }); //TODO pull the id from url
 
+    
     const [loading, setLoading] = useState(true);
 
     const [auth] = useContext(AuthContext);
@@ -25,13 +29,17 @@ const Profile = (props) => {
                     }
                 }
             )
+            console.log("profile");
             console.log(res.data);
+            // console.log(res.data.languages);
             setLoading(false);
             setDeveloper(res.data);
+            console.log("developer");
+            console.log(developer);
         }
         setLoading(true);
         _fetchDeveloper();
-    }, [])
+    }, []);
     //useEffect 1) run code one time on mounting 2) run code on mounting and again whenever a dependency is updating 
 
     const _addFriend = async () => {
@@ -52,6 +60,11 @@ const Profile = (props) => {
     }
 
     const displayProfile = () => {
+        console.log("Display Dev");
+        console.log(developer);
+        const {languages} = developer;
+        console.log("Display lang");
+        console.log(languages);
         return(
             <Fragment>
                 {/* Profile Banner */}
@@ -85,6 +98,9 @@ const Profile = (props) => {
                         <h1>{developer.name}</h1>
                         <p>Cohort:</p>
                         <p>{developer.cohort}</p>
+                        {languages.map((lang) => (
+                        <p key={lang.id}>{lang.name}</p>
+                        ))}
                     </div>
 
                 </div>
@@ -144,10 +160,23 @@ const Profile = (props) => {
     Display Cohort Number and add and block buttons
     Display about me and if friends display friends
     */
-    return(
-        // add spinner
-        displayProfile()
+    return (
+        <div style={{
+          display: "flex",
+          flex: "1",
+          flexDirection: "column",
+          alignItems: 'center',
+          minHeight: '100vh',
+        }}>
+          {loading ? (
+            <Spinner /> 
+          ) : 
+            displayProfile()
+          }
+        </div>
     )
+    
+    
 }
 
 export default Profile;

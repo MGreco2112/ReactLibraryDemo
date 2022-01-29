@@ -2,7 +2,7 @@ import React from "react";
 import BorderCard from "../common/BorderCard";
 
 const Developer = (props) => {
-    const {name, cohort, id} = props.developer;
+    const {name, cohort, id, languages} = props.developer;
 
     const onSelect = () => {
         props.onSelect(id);
@@ -12,6 +12,9 @@ const Developer = (props) => {
         <BorderCard onClick={onSelect}>
             <p>{name}</p>
             <p>{cohort}</p>
+            {/* {languages.map((lang) => (
+                <p key={lang.id}>{lang.name}</p>
+            ))} */}
         </BorderCard>
     )
 }
