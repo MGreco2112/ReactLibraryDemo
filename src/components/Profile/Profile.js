@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom"
 import {AuthContext} from "../providers/AuthProvider"
 import image from "../../Assets/background-img.jpg"
 import Button from "../common/Button"
+import lorem from "../../Assets/LoremIpsum";
 
 const Profile = (props) => {
     const params = useParams();
@@ -32,6 +33,23 @@ const Profile = (props) => {
         _fetchDeveloper();
     }, [])
     //useEffect 1) run code one time on mounting 2) run code on mounting and again whenever a dependency is updating 
+
+    const _addFriend = async () => {
+        try {
+            await axios.post(`http://localhost:8080/api/developers/relationships/add/${developer.id}`,
+            {},
+            {
+                headers: {
+                    "Authorization": `Bearer ${auth.token}`
+                }
+            })
+        } catch (e) {
+            console.log(e.message);
+            if (e.response) {
+                console.log(e.response.data.message);
+            }
+        }
+    }
 
     const displayProfile = () => {
         return(
@@ -64,7 +82,7 @@ const Profile = (props) => {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <h1>{developer.name.toUpperCase()}</h1>
+                        <h1>{developer.name}</h1>
                         <p>Cohort:</p>
                         <p>{developer.cohort}</p>
                     </div>
@@ -83,7 +101,8 @@ const Profile = (props) => {
                         padding: '0.3rem, 0.5rem',
                         color: '#1F1F1F',
                         
-                    }}>Add Friend</Button>
+                    }}
+                    onClick={_addFriend}>Add Friend</Button>
                     <Button style={{
                         width: 'auto',
                         padding: '0.3rem, 0.5rem',
@@ -92,6 +111,30 @@ const Profile = (props) => {
                     }}>Block</Button>
                 </div>
                 {/* About Me & Friends List */}
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    width: '100%',
+                    maxWidth: '900px'
+                }}>
+                    <div style={{
+                        flex:2,
+                        flexDirection: 'column',
+                        width: '100%',
+                        padding: '4px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        width: '100%',
+
+                    }}>
+                        <h2>About Me</h2>
+                        <p>{lorem.substring(0, 2000)}</p>
+                    </div>
+                    <div>
+                        <h2>Friends</h2>
+                        <p>You are not Friends</p>
+                    </div>
+                </div>
             </Fragment>
         )
     }
