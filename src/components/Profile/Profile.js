@@ -32,8 +32,8 @@ const Profile = () => {
             console.log("profile");
             console.log(res.data);
             // console.log(res.data.languages);
-            setLoading(false);
             setDeveloper(res.data);
+            setLoading(false);
             console.log("developer");
             console.log(developer);
         }
@@ -96,8 +96,8 @@ const Profile = () => {
                         alignItems: 'center'
                     }}>
                         <h1>{developer.name}</h1>
-                        <p>Cohort:</p>
-                        <p>{developer.cohort}</p>
+                        <p>Cohort: {developer.cohort}</p>
+                        {/* Surround with Div style flexDirection: 'row' */}
                         {languages.map((lang) => (
                         <p key={lang.id}>{lang.name}</p>
                         ))}
