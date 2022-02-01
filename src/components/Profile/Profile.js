@@ -97,10 +97,17 @@ const Profile = () => {
                     }}>
                         <h1>{developer.name}</h1>
                         <p>Cohort: {developer.cohort}</p>
-                        {/* Surround with Div style flexDirection: 'row' */}
+                        <div style={{
+                            flex: 2,
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
                         {languages.map((lang) => (
                         <p key={lang.id}>{lang.name}</p>
                         ))}
+                        </div>
+                        
                     </div>
 
                 </div>
