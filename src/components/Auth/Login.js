@@ -25,7 +25,13 @@ const Login = () => {
     const onSubmit = async () => {
         try {
             const res = await axios.post('http://localhost:8080/api/auth/signin', query);
-            setAuth({...auth, token: res.data.token});
+            const profileRequest = await axios.get('http://localhost:8080/api/developers/self', {
+                headers: {
+                    authorization: `Bearer ${res.data.token}`
+                }
+            })
+            console.log(profileRequest.data);
+            setAuth({...auth, token: res.data.token, profile: profileRequest.data});
             setSubmitting(false);
             navigate('/developers');
         } catch (e) {

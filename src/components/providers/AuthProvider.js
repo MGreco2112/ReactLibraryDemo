@@ -3,7 +3,12 @@ import React, {useState} from "react";
 const AuthContext = React.createContext([]);
 
 const AuthProvider = (props) => {
-    const [auth, setAuth] = useState({token: null, name: null});
+    const [auth, setAuth] = useState({
+        token: null,
+        name: null,
+        profile: null,
+        
+        });
     
 
     

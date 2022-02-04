@@ -119,13 +119,7 @@ const Profile = () => {
                     width: '100%',
                     maxWidth: '900px'
                 }}>
-                    <Button style={{
-                        width: 'auto',
-                        padding: '0.3rem, 0.5rem',
-                        color: '#1F1F1F',
-                        
-                    }}
-                    onClick={_addFriend}>Add Friend</Button>
+                    {displayRelationButton()}
                     <Button style={{
                         width: 'auto',
                         padding: '0.3rem, 0.5rem',
@@ -167,6 +161,63 @@ const Profile = () => {
     Display Cohort Number and add and block buttons
     Display about me and if friends display friends
     */
+
+    const displayRelationButton = () => {
+        if (auth.profile.friends.find((friend) => friend.id === developer.id)) {
+            //we are friends
+            return (
+                <Button
+                onClick={removeFriend}
+                >
+                    Remove Freind
+                </Button>
+            )
+        }
+        if (auth.profile.pendingFriendship.find((friend) => friend.id === developer.id)) {
+            //we are friends
+            return (
+                <Button
+                >
+                    Pending Approval
+                </Button>
+            )
+        }
+        if (auth.profile.incomingFriendship.find((friend) => friend.id === developer.id)) {
+            //we are friends
+            return (
+                <Button
+                onClick={approveFriend}
+                >
+                    Pending Acceptance
+                </Button>
+            )
+        }
+
+        return (
+            
+            <Button style={{
+                width: 'auto',
+                padding: '0.3rem, 0.5rem',
+                color: '#1F1F1F',
+                
+            }}
+            onClick={_addFriend}>Add Friend</Button>
+        )
+
+    }
+
+    const removeFriend = () => {
+        alert("No longer Freinds")
+    }
+
+    const blockUser = () => {
+        alert("blocked")
+    }
+
+    const approveFriend = () => {
+        alert("approved")
+    }
+
     return (
         <div style={{
           display: "flex",
