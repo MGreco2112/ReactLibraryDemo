@@ -12,9 +12,6 @@ const Developer = (props) => {
         <BorderCard onClick={onSelect}>
             <p>{name}</p>
             <p>{cohort}</p>
-            {/* {languages.map((lang) => (
-                <p key={lang.id}>{lang.name}</p>
-            ))} */}
         </BorderCard>
     )
 }
