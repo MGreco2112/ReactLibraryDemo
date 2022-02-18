@@ -11,7 +11,9 @@ const NewsProvider = (props) => {
     useEffect(() => {
         const getNews = async (query) => {
             try {
-                const res = await axios.get(`http://localhost:8080/api/test/news/${query}`)
+                const host = process.env.REACT_APP_API_HOST || "http://localhost:8080";
+
+                const res = await axios.get(`${host}/api/test/news/${query}`)
                 setArticles(res.data);
                 setLoading(false);
             } catch (e) {

@@ -6,6 +6,7 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons'
 import { NewsProvider } from './components/providers/NewsProvider';
 
+
 library.add(fas);
 
 function App() {

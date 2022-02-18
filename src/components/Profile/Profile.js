@@ -9,6 +9,8 @@ import Spinner from "../faCommon/Spinner";
 
 const Profile = () => {
 
+    const host = process.env.REACT_APP_API_HOST || "http://localhost:8080";
+
     const params = useParams();
     const [developer, setDeveloper] = useState({
         id: params.devId,
@@ -23,7 +25,7 @@ const Profile = () => {
     useEffect(() => {
         const _fetchDeveloper = async () => {
             const res = await axios.get
-                (`http://localhost:8080/api/developers/${developer.id}`, {
+                (`${host}/api/developers/${developer.id}`, {
                     headers: {
                         "Authorization": `Bearer ${auth.token}`
                     }
@@ -44,7 +46,7 @@ const Profile = () => {
 
     const _addFriend = async () => {
         try {
-            await axios.post(`http://localhost:8080/api/developers/relationships/add/${developer.id}`,
+            await axios.post(`${host}/api/developers/relationships/add/${developer.id}`,
             {},
             {
                 headers: {
