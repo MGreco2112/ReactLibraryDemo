@@ -43,7 +43,7 @@ const Register = () => {
 
         try {
 
-            const response = await axios.post(`${host}/api/auth/signup`, data);
+            const response = await axios.post(`${host}api/auth/signup`, data);
             alert(response.data.message);
             login(data);
         } catch (e) {
@@ -55,7 +55,7 @@ const Register = () => {
 
     const login = async (data) => {
         try {
-            const response = await axios.post(`${host}/api/auth/signin`, data);
+            const response = await axios.post(`${host}api/auth/signin`, data);
             alert(response.data.token)
             createDeveloper(data, response.data.token);
         } catch (e) {
@@ -66,7 +66,7 @@ const Register = () => {
     const createDeveloper = async (data,token) => {
         data.email = data.username;
         try {
-            const response = await axios.post(`${host}/api/developers`, data, {headers: {
+            const response = await axios.post(`${host}api/developers`, data, {headers: {
                 "Authorization": `Bearer ${token}`
             }});
             console.log(response.data);

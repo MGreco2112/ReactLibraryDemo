@@ -25,7 +25,7 @@ const Profile = () => {
     useEffect(() => {
         const _fetchDeveloper = async () => {
             const res = await axios.get
-                (`${host}/api/developers/${developer.id}`, {
+                (`${host}api/developers/${developer.id}`, {
                     headers: {
                         "Authorization": `Bearer ${auth.token}`
                     }
@@ -46,7 +46,7 @@ const Profile = () => {
 
     const _addFriend = async () => {
         try {
-            await axios.post(`${host}/api/developers/relationships/add/${developer.id}`,
+            await axios.post(`${host}api/developers/relationships/add/${developer.id}`,
             {},
             {
                 headers: {

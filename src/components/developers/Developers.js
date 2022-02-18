@@ -11,10 +11,12 @@ const Developers = (props) => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
+    const host = process.env.REACT_APP_API_HOST || "http://localhost:8080";
+
     useEffect(() => {
         const _getDevelopers = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/api/developers", {
+                const response = await axios.get(`${host}api/developers`, {
                 headers: {
                     "Authorization": `Bearer ${auth.token}` 
                 }
